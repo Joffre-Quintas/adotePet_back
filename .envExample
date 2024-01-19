@@ -1,0 +1,1 @@
+DATABASE_URL="postgresql://login:password@localhost:5432/adotePet"
