@@ -15,7 +15,7 @@ model Address {
   neightborhood String
   state         String    @db.VarChar(2)
   number        String
-  complement    String    @db.VarChar(256)
+  complement    String
   user          User[]
   ong           Ong[]
   userId        String
@@ -50,7 +50,7 @@ model User {
 
 model Ong {
   id          String    @id @default(uuid())
-  cnpj        String    @unique
+  cnpj        String    @unique @db.VarChar(14)
   fantasyName String    @map("fantasy_name")
   companyName String    @unique @map("company_name")
   phone       String    @unique
