@@ -8,20 +8,18 @@ datasource db {
 }
 
 model Address {
-  id            String    @id() @default(uuid())
-  cep           String    @db.VarChar(8)
-  street        String
-  city          String
-  neightborhood String
-  state         String    @db.VarChar(2)
-  number        String
-  complement    String
-  user          User[]
-  ong           Ong[]
-  userId        String
-  ongId         String
-  createdAt     DateTime  @map("created_at")
-  updatedAt     DateTime? @map("updated_at")
+  id           String    @id() @default(uuid())
+  cep          String    @db.VarChar(8)
+  street       String
+  city         String
+  neighborhood String
+  state        String    @db.VarChar(2)
+  number       String
+  complement   String
+  user         User[]
+  ong          Ong[]
+  createdAt    DateTime  @map("created_at")
+  updatedAt    DateTime? @map("updated_at")
 
   @@map("addresses")
 }
@@ -39,7 +37,7 @@ model User {
   dateBirth    DateTime  @map("date_birth") @db.Date
   address      Address   @relation(fields: [addressId], references: [id])
   addressId    String    @map("address_id")
-  Ong          Ong?      @relation(fields: [ongId], references: [id])
+  ong          Ong?      @relation(fields: [ongId], references: [id])
   ongId        String?   @map("ong_id")
   pet          pet[]
   createdAt    DateTime  @map("created_at")
@@ -78,7 +76,7 @@ model pet {
   urlPhoto                String
   dateOfBirth             DateTime  @map("date_of_birth") @db.Date
   ifDeficient             Boolean
-  DescriptionOfDisability String    @map("description_of_disability")
+  descriptionOfDisability String    @map("description_of_disability")
   species                 String
   user                    User?     @relation(fields: [userId], references: [id])
   userId                  String?   @map("user_id")
