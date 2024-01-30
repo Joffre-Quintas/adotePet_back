@@ -1,12 +1,13 @@
 import { Request, Response } from 'express'
 import AddressUsecase from '../usecases/AddressUsecase'
+import TGetAddress from '../types/TGetAddress'
 
 class AddressController {
-    static async getAddressForUUID(req: Request, res: Response) {
+    static async findAddress(req: Request, res: Response) {
         try {
-            const { uuid }: { uuid: string } = req.body
+            const { cep, street, number }: TGetAddress = req.body
 
-            const address = await AddressUsecase.getAddressForUUID(uuid)
+            const address = await AddressUsecase.findAddress({ cep, street, number })
 
             res.status(200).json(address)
         } catch (error: any) {
