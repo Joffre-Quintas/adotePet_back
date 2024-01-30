@@ -1,10 +1,13 @@
 import prisma from '../prisma'
+import TGetAddress from '../types/TGetAddress'
 
 class AddressUsecase {
-    static async getAddressForUUID(uuid: string) {
+    static async findAddress({ cep, street, number }: TGetAddress) {
         const address = await prisma.address.findFirst({
             where: {
-                id: uuid
+                cep,
+                street,
+                number
             }
         })
 

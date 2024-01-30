@@ -5,6 +5,6 @@ import { getAddressSchema } from '../validations/schema/AddressSchemas'
 
 const addressRoutes = Router()
 
-addressRoutes.get('/address', validations(getAddressSchema), AddressController.getAddressForUUID)
+addressRoutes.get('/address', validations(getAddressSchema), AddressController.findAddress)
 
 export default addressRoutes
