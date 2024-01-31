@@ -3,7 +3,9 @@ import AddressController from '../../src/controllers/AddressControllers'
 describe('AddressControllers', () => {
     const reqMock: any = {
         body: {
-            uuid: 'aaa'
+            cep: '11111111',
+            street: 'av qualquer coisa',
+            number: '10'
         }
     }
     const resMock: any = {
@@ -11,9 +13,10 @@ describe('AddressControllers', () => {
         json: jest.fn(() => resMock)
     }
 
-    it('should return "Endereço não encontrado!"', async () => {
-        await AddressController.getAddressForUUID(reqMock, resMock)
+    it('should return "Endereço não encontrado!" and status 204', async () => {
+        await AddressController.findAddress(reqMock, resMock)
 
         expect(resMock.json).toHaveBeenCalledWith({ message: 'Endereço não encontrado!' })
+        expect(resMock.status).toHaveBeenCalledWith(204)
     })
 })
