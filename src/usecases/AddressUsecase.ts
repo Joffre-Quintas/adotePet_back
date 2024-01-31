@@ -1,3 +1,4 @@
+import ResException from '../exceptions/ResExceptions'
 import prisma from '../prisma'
 import TGetAddress from '../types/TGetAddress'
 
@@ -11,7 +12,7 @@ class AddressUsecase {
             }
         })
 
-        if (!address) throw new Error('Endereço não encontrado!')
+        if (!address) throw new ResException(204, 'Endereço não encontrado!')
 
         return address
     }
