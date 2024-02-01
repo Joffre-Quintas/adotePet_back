@@ -1,3 +1,4 @@
+import ResException from '../exceptions/ResExceptions'
 import prisma from '../prisma'
 import { TGetAdressSchema } from '../validations/schema/AddressSchemas'
 
