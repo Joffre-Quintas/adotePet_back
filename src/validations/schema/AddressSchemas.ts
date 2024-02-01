@@ -1,6 +1,9 @@
 import * as yup from 'yup'
 
-const cepSchema = yup.string().length(8, 'CEP deve conter 8 números sem símbolos.').required('Campo obrigatório!')
+const cepSchema = yup
+    .string()
+    .matches(RegExp(/{d}8/), 'CEP deve conter 8 números sem simbolos.')
+    .required('Campo obrigatório!')
 
 const getAddressSchema = yup.object({
     cep: cepSchema,

@@ -11,8 +11,6 @@ class AddressUsecase {
             }
         })
 
-        if (!address) throw new Error('Endereço não encontrado!')
-
         return address
     }
 }
