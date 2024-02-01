@@ -3,7 +3,7 @@ import prisma from '../prisma'
 import TGetAddress from '../types/TGetAddress'
 
 class AddressUsecase {
-    static async findAddress({ cep, street, number }: TGetAddress) {
+    static async findAddress({ cep, street, number }: TGetAddress):Promise<string|undefined> {
         const address = await prisma.address.findFirst({
             where: {
                 cep,
@@ -12,10 +12,9 @@ class AddressUsecase {
             }
         })
 
-        if (!address) throw new ResException(204, 'Endereço não encontrado!')
-
-        return address
+        return address?.id
     }
+    
 }
 
 export default AddressUsecase
