@@ -15,7 +15,7 @@ model Address {
   neighborhood String
   state        String    @db.VarChar(2)
   number       String
-  complement   String
+  complement   String?
   user         User[]
   ong          Ong[]
   createdAt    DateTime  @map("created_at")
