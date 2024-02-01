@@ -1,9 +1,9 @@
 import ResException from '../exceptions/ResExceptions'
 import prisma from '../prisma'
-import TGetAddress from '../types/TGetAddress'
+import { TGetAdressSchema } from '../validations/schema/AddressSchemas'
 
 class AddressUsecase {
-    static async findAddress({ cep, street, number }: TGetAddress) {
+    static async findAddress({ cep, street, number }: TGetAdressSchema) {
         const address = await prisma.address.findFirst({
             where: {
                 cep,
@@ -11,8 +11,6 @@ class AddressUsecase {
                 number
             }
         })
-
-        if (!address) throw new ResException(204, 'Endereço não encontrado!')
 
         return address
     }
