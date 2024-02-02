@@ -18,7 +18,7 @@ const createAddressSchema = yup.object({
     neighborhood: yup.string().required('Campo obrigatório!'),
     state: yup.string().length(2, 'Campo "Estado" deve conter apenas 2 caracteres').required('Campo obrigatório!'),
     number: yup.string().required('Campo obrigatório!'),
-    complement: yup.string()
+    complement: yup.string().nullable().default('')
 
 })
  

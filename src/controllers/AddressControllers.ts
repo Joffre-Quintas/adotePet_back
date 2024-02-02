@@ -18,6 +18,8 @@ class AddressController {
         try {
             const {cep, street, city,neighborhood,state,number,complement}: TCreateAddressShema = req.body
 
+            const address = await AddressUsecase.createAddress({cep, street, city,neighborhood,state,number,complement})
+
             res.status(200).json({message:'Endereço criado com sucesso!'})
         } catch (error:any) {
             res.status(error.status || 500).json({ message: error.message })
