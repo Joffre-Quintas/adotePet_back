@@ -1,0 +1,9 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "AdotePet API",
+    "description": "Esta API irá servir um client que cuidára da exposição de animais disponíveis para adoção.",
+    "version": "1.0.0"
+  },
+  "basePath": "http://localhost:3000"
+}

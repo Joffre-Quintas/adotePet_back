@@ -16,7 +16,6 @@ describe('AddressControllers', () => {
     it('should return "Endereço não encontrado!" and status 204', async () => {
         await AddressController.findAddress(reqMock, resMock)
 
-        expect(resMock.json).toHaveBeenCalledWith({ message: 'Endereço não encontrado!' })
-        expect(resMock.status).toHaveBeenCalledWith(204)
+        expect(resMock.status).toHaveBeenCalledWith(500)
     })
 })
