@@ -16,19 +16,6 @@ class AddressUsecase {
 
     static async createAddress({cep, street, city,neighborhood,state,number,complement}: TCreateAddressShema){
 
-        const data = {
-                cep, 
-                street, 
-                city,
-                neighborhood,
-                state,
-                number
-            
-        }
-
-        if (complement !== undefined) {
-            data.set = complement
-        }
         const address = prisma.address.create({
             data: {
                 cep, 
@@ -37,7 +24,8 @@ class AddressUsecase {
                 neighborhood,
                 state,
                 number,
-                complement
+                complement,
+                createdAt: new Date()
             },
           })
 
