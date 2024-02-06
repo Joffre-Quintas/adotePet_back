@@ -6,7 +6,7 @@ const validations = (schema: yup.AnyObjectSchema) => async (req: Request, res: R
         await schema.validate(req.body)
         next()
     } catch (error: any) {
-        res.status(400).json({ message: error.errors })
+        res.status(400).json({ message: error.errors[0] })
     }
 }
 
