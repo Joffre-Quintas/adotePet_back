@@ -1,6 +1,8 @@
 import * as yup from 'yup'
-import dinamicMessage from '../../utils/utils'
 
+function dinamicMessage(nome:string){
+    return `Campo ${nome} obrigatório`
+}
 
 const cepSchema = yup
     .string()
