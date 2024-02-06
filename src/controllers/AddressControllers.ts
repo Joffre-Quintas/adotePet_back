@@ -22,7 +22,7 @@ class AddressController {
 
             res.status(200).json({message:'Endereço criado com sucesso!'})
         } catch (error:any) {
-            res.status(error.status || 500).json({ message: error.message[0] })
+            res.status(error.status || 500).json({ message: error.message })
         }
     }
 }
