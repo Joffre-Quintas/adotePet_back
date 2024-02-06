@@ -22,7 +22,7 @@ class AddressUsecase {
                 street, 
                 city,
                 neighborhood,
-                state,
+                state: state.toUpperCase(),
                 number,
                 complement,
                 createdAt: new Date()
