@@ -4,7 +4,7 @@ import { TUpdateOngSchema } from "../validations/schema/OngsSchemas";
 
 class OngsUsecase {
 
-    static async findAddress({ cep, street, number }: TGetAdressSchema) {
+    static async findAddress({cep, street, city,neighborhood,state,number,complement}: TCreateAddressShema) {
         const address = await prisma.address.findFirst({
             where: {
                 cep,
@@ -13,33 +13,28 @@ class OngsUsecase {
             }
         })
 
-    }
-
-    static async createAddress({cep, street, city,neighborhood,state,number,complement}: TCreateAddressShema){
-
-        const address = prisma.address.create({
-            data: {
-                cep, 
-                street, 
-                city,
-                neighborhood,
-                state: state.toUpperCase(),
-                number,
-                complement,
-                createdAt: new Date()
-            },
-          })
-
-          return address
-    }
-    
-    
+        if (address) {
+            return address.id
+        }else{
+            const address = prisma.address.create({
+                data: {
+                    cep, 
+                    street, 
+                    city,
+                    neighborhood,
+                    state: state.toUpperCase(),
+                    number,
+                    complement,
+                    createdAt: new Date()
+                },
+            })
+            return (await address).id
+        }
+    }  
     
     static async updateOng ({fantasyName,companyName,phone,email,urlCompany,addressId,updatedAt}:TUpdateOngSchema){
         
-        if (!this.findAddress()){
-            return this.createAddress
-        }else{
+
             const updateOng = await prisma.ong.update({
                 where:{
                     fantasyName,
@@ -47,11 +42,12 @@ class OngsUsecase {
                     phone,
                     email,
                     urlCompany,
-                    addressId: this.findAddress(),
+                    addressId,
                     updatedAt: new Date()
                 }
             })
-        }
+        
+            return updateOng
         
 
     }
