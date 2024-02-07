@@ -53,6 +53,7 @@ model Ong {
   companyName String    @unique @map("company_name")
   phone       String    @unique
   email       String    @unique
+  urlCompany  String?    
   address     Address   @relation(fields: [addressId], references: [id])
   addressId   String    @map("address_id")
   user        User[]
