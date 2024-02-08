@@ -1,59 +1,38 @@
 import prisma from "../prisma";
-import { TCreateAddressShema, TGetAdressSchema } from "../validations/schema/AddressSchemas";
 import { TUpdateOngSchema } from "../validations/schema/OngsSchemas";
 
 class OngsUsecase {
 
-    static async findAddress({cep, street, city,neighborhood,state,number,complement}: TCreateAddressShema) {
+    static async ongFindAddress({ addressObject}: TUpdateOngSchema) {
         const address = await prisma.address.findFirst({
             where: {
-                cep,
-                street,
-                number
+                cep:addressObject?.cep,
+                street:addressObject?.street,
+                number:addressObject?.number
             }
         })
 
-        if (address) {
-            return address.id
-        }else{
-            const address = prisma.address.create({
-                data: {
-                    cep, 
-                    street, 
-                    city,
-                    neighborhood,
-                    state: state.toUpperCase(),
-                    number,
-                    complement,
-                    createdAt: new Date()
-                },
-            })
-            return (await address).id
-        }
-    }  
-    
-    static async updateOng ({fantasyName,companyName,phone,email,urlCompany,addressId,updatedAt}:TUpdateOngSchema){
-        
-
-            const updateOng = await prisma.ong.update({
-                where:{
-                    fantasyName,
-                    companyName,
-                    phone,
-                    email,
-                    urlCompany,
-                    addressId,
-                    updatedAt: new Date()
-                }
-            })
-        
-            return updateOng
-        
-
+        return address?.id
     }
 
+    static async ongCreateAddress({addressObject}: TUpdateOngSchema){
+
+        const address = prisma.address.create({
+            data: {
+                cep: addressObject?.cep, 
+                street: addressObject?.street, 
+                city: addressObject?.city,
+                neighborhood: addressObject?.neighborhood,
+                state: addressObject?.state.toUpperCase(),
+                number: addressObject?.number,
+                complement: addressObject?.complement,
+                updatedAt: new Date()
+            },
+          })
+
+          return (await address).id
 
 
+
+    }
 }
-
-export default OngsUsecase

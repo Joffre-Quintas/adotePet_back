@@ -1,17 +1,19 @@
 import * as yup from 'yup'
-import { cepSchema } from '../globalSchemas/globalSchemas'
-
-
 
 function errorMessageFieldRequired(nome:string){
     return `Campo ${nome} obrigatório`
 }
 
-const getAddressSchema = yup.object({
-    cep: cepSchema,
-    street: yup.string().required(errorMessageFieldRequired('rua')),
-    number: yup.string().required(errorMessageFieldRequired('número'))
-})
+const cepSchema = yup
+    .string()
+    .matches(/^\d{8}$/, 'CEP deve conter 8 números sem simbolos.')
+    .required(errorMessageFieldRequired('CEP'))
+
+
+const cnpjSchema = yup
+.string()
+.matches(/^\d{14}$/, 'CNPJ deve conter 14 números sem simbolos.')
+.required(errorMessageFieldRequired('CEP'))
 
 const createAddressSchema = yup.object({
     cep: cepSchema,
@@ -23,8 +25,7 @@ const createAddressSchema = yup.object({
     complement: yup.string().notRequired()
 
 })
- 
 
-type TGetAdressSchema = yup.InferType<typeof getAddressSchema>
-type TCreateAddressShema = yup.InferType<typeof createAddressSchema>
-export { getAddressSchema,createAddressSchema, TGetAdressSchema, TCreateAddressShema }
+export {cepSchema,cnpjSchema,createAddressSchema}
+
+
