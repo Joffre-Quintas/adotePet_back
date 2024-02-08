@@ -14,22 +14,21 @@ class AddressUsecase {
         return address
     }
 
-    static async createAddress({cep, street, city,neighborhood,state,number,complement}: TCreateAddressShema){
-
+    static async createAddress({ cep, street, city, neighborhood, state, number, complement }: TCreateAddressShema) {
         const address = prisma.address.create({
             data: {
-                cep, 
-                street, 
+                cep,
+                street,
                 city,
                 neighborhood,
                 state: state.toUpperCase(),
                 number,
                 complement,
                 createdAt: new Date()
-            },
-          })
+            }
+        })
 
-          return address
+        return address
     }
 }
 

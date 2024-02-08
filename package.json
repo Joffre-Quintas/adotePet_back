@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/index.ts",
-    "test": "jest"
+    "test": "jest --verbose",
+    "test:silent": "jest --silent",
+    "coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
