@@ -9,11 +9,11 @@ class OngsController {
 
     static async updateOng(req:Request, res:Response){
         try {
-            const {cnpj,fantasyName,companyName,phone,email,urlCompany,addressObject}:TUpdateOngSchema = req.body
+            const date:TUpdateOngSchema = req.body
             
-            const ongs = await 
+            const ongs = await OngsUsecase.ongUpdate(date)
 
-            return
+            return 
         } catch (error:any) {
             res.status(error.status || 500).json({ message: error.message })
         }

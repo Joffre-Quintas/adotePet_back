@@ -4,6 +4,7 @@ import { createAddressSchema } from './AddressSchemas'
 
 
 const updateOngSchema = yup.object({
+    id: yup.string().uuid().required(),
     cnpj: cnpjSchema,
     fantasyName: yup.string(),
     companyName: yup.string(),
